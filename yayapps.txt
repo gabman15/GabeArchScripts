@@ -1,0 +1,4 @@
+librewolf-bin
+passwordsafe
+mullvad-vpn
+pfetch
