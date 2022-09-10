@@ -2,3 +2,6 @@ librewolf-bin
 passwordsafe
 mullvad-vpn
 pfetch
+greetd
+greetd-tuigreet
+gruvbox-dark-gtk
