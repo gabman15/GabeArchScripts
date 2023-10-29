@@ -30,6 +30,7 @@
 ;;font
 (add-to-list 'default-frame-alist '(font . "Hack-13"))
 
+(setq paren-mode t)
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -37,7 +38,6 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-
 
 ;;org mode
 (global-set-key (kbd "C-c l") #'org-store-link)
