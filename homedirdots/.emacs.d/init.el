@@ -19,20 +19,32 @@
  '(fringe-mode 6 nil (fringe))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(sml-mode auto-complete-auctex all-the-icons-dired all-the-icons arduino-cli-mode arduino-mode gruvbox-theme markdown-mode rust-mode gnu-elpa-keyring-update ##)))
+   '(go-translate sml-mode auto-complete-auctex all-the-icons-dired all-the-icons arduino-cli-mode arduino-mode gruvbox-theme markdown-mode rust-mode gnu-elpa-keyring-update ##))
+ '(vhdl-basic-offset 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;;font
+(add-to-list 'default-frame-alist '(font . "Hack-13"))
 
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq-default c-basic-offset 4)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+
+;;org mode
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+
+
 
 ;;--------------------------------------------------------------------------------
 (when (display-graphic-p)
@@ -42,3 +54,12 @@
 ;; put backup files in a new place
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq backup-by-copying t)
+
+(require 'go-translate)
+(setq gts-translate-list '(("jp" "en")))
+
+(setq gts-default-translator
+      (gts-translator
+       :picker (gts-prompt-picker)
+       :engines (list (gts-bing-engine) (gts-google-engine))
+       :render (gts-buffer-render)))
