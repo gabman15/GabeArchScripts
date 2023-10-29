@@ -5,6 +5,7 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
+;;(package-refresh-contents)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -19,7 +20,8 @@
  '(fringe-mode 6 nil (fringe))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(sml-mode auto-complete-auctex all-the-icons-dired all-the-icons arduino-cli-mode arduino-mode gruvbox-theme markdown-mode rust-mode gnu-elpa-keyring-update ##)))
+   '(which-key ement sml-mode auto-complete-auctex all-the-icons-dired all-the-icons arduino-cli-mode arduino-mode gruvbox-theme markdown-mode rust-mode gnu-elpa-keyring-update ##))
+ '(vhdl-basic-offset 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -27,12 +29,16 @@
  ;; If there is more than one, they won't work right.
  )
 
+(setq paren-mode t)
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+(setq visible-bell t)
+(setq ring-bell-function 'ignore)
 
 ;;--------------------------------------------------------------------------------
 (when (display-graphic-p)
@@ -42,3 +48,15 @@
 ;; put backup files in a new place
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq backup-by-copying t)
+
+(set-frame-font "Hack-13" nil t)
+
+;;(add-hook 'text-mode-hook
+;;          '(lambda ()
+;;             (setq indent-tabs-mode nil)
+;;             (setq tab-width 4)
+;;             (setq indent-line-function (quote insert-tab))))
+
+
+(setq-default c-basic-offset 4)
+

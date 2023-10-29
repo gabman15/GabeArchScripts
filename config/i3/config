@@ -29,11 +29,13 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
-#set $refresh_i3status killall -SIGUSR1 i3status
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
@@ -101,7 +103,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle ; [floating] resize set 1000 1000 ; move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -201,28 +203,21 @@ for_window [class="^.*"] border pixel 2
 #}
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-#exec --no-startup-id feh --bg-scale /home/lord_gabem/Pictures/Wallpapers/minamitsu.jpg --bg-scale /home/lord_gabem/Pictures/Wallpapers/minamitsu.jpg
+exec --no-startup-id feh --bg-scale /home/lord_gabem/Pictures/yakumo.jpg --bg-scale /home/lord_gabem/Pictures/yakumo.jpg
 
 #exec_always picom -f
 
 #exec_always wal -R
 
-bindsym $mod+Shift+p exec "main -i $(xdotool getactivewindow) ~/Pictures/screenshots/$(date +%s)"
-bindsym $mod+Shift+s exec "maim -s | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png"
+bindsym $mod+Shift+p exec "maim -u -i $(xdotool getactivewindow) | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png"
+bindsym $mod+Shift+s exec "maim -s -u | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png"
 
-bindsym $mod+Shift+x exec "i3lock -i Pictures/marisalock.jpg -M --ind-pos='1353:1173'"
+bindsym $mod+Shift+x exec "i3lock -i Pictures/marisalock.jpg -M"
 
+bindsym $mod+t exec "synclient TouchpadOff=2"
+bindsym $mod+Shift+t exec "synclient TouchpadOff=0"
 
-
-# OUTPUT DISPLAY
-# Switch screen display to the second monitor through HDMI output (mode optimised for TV)
-bindsym $mod+Home exec xrandr && xrandr --output LVDS1 --off --output HDMI-1-0 --mode 1920x1080
-
-# Switch screen display back to the main monitor through HDMI output
-bindsym $mod+End exec xrandr && xrandr --output LVDS1 --auto --output HDMI-1-0 --off
-
-# Display on both monitors (mode optimised for TV)
-bindsym $mod+equal exec xrandr && xrandr --output LVDS1 --auto --output HDMI-1-0 --mode 1920x1080
+bindsym $mod+p exec "rofi-pass"
 
 for_window [class="^Steam$" title="^Friends$"] floating enable
 for_window [class="^Steam$" title="Steam - News"] floating enable

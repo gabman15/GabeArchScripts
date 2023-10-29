@@ -31,7 +31,13 @@ PS1='[\u@\h \W]\$ '
 
 export EDITOR='emacs'
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
+
+export PATH="$HOME/Programs/oss-cad-suite/bin:$PATH"
+
 
 # fetch #
+cat ~/ascii/yukari
+export PF_COL1=6
+export PF_COL3=5
+export PF_INFO="title os host kernel uptime pkgs memory"
 pfetch
