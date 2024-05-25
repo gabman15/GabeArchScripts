@@ -1,5 +1,7 @@
 # gabman15 i3 config file
 
+include ~/.config/i3/`hostname`-config
+
 #Main font
 font pango:Hack Nerd Font 14
 
@@ -174,12 +176,10 @@ bindsym $mod+Shift+e exec emacs
 
 bindsym $mod+Shift+p exec "maim -u -i $(xdotool getactivewindow) | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png"
 bindsym $mod+Shift+s exec "maim -s -u | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png"
-bindsym $mod+Shift+Mod1+p exec "maim -g 2560x1440+0+0 | xclip -selection clipboard -t image/png"
+
 bindsym $mod+Shift+t exec "transformers_ocr recognize"
 #bindsym $mod+Shift+t exec "maim -s -u | xclip -selection clipboard -t image/png"
 bindsym $mod+Shift+m exec "mpv $(xclip -o)"
-
-bindsym $mod+Shift+x exec "i3lock -i Pictures/marisalock.jpg -M"
 
 bindsym $mod+p exec "rofi-pass"
 
