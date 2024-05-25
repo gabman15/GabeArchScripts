@@ -11,7 +11,7 @@
 (if (file-exists-p custom-file) (load custom-file ))
 
 ;;font
-(add-to-list 'default-frame-alist '(font . "Hack-13"))
+(add-to-list 'default-frame-alist '(font . "Hack-12"))
 
 (setq paren-mode t)
 (setq column-number-mode t)
@@ -45,12 +45,8 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq backup-by-copying t)
 
-(require 'go-translate)
-(setq gts-translate-list '(("jp" "en")))
+(put 'downcase-region 'disabled nil)
 
-(setq gts-default-translator
-      (gts-translator
-       :picker (gts-prompt-picker)
-       :engines (list (gts-bing-engine) (gts-google-engine))
-       :render (gts-buffer-render)))
-
+;;evil mode
+;;(require 'evil)
+;;(evil-mode 1)
