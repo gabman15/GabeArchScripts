@@ -275,4 +275,4 @@ label-font = 3
 type = custom/text
 label = background
 label-foreground = ${colors.primary}
-click-left = exec python ~/Programs/gabe-backgrounder/backgrounder.py
+click-left = exec backgrounder
