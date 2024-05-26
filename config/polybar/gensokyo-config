@@ -16,9 +16,22 @@
 ;
 ;==========================================================
 
-include-directory = /home/lord_gabem/.config/polybar/gensokyo
+[colors]
+background = ${xrdb:color0}
+foreground = ${xrdb:color}
+primary = ${xrdb:color1}
+secondary = ${xrdb:color5}
+alert = ${xrdb:color6}
 
-include-file = /home/lord_gabem/.config/polybar/modules-polybar
+[fonts]
+font-0 = Hack Nerd Font:size=14
+font-1 = Koruri-Regular:size=13
+font-2 = Weather Icons:size=12
+font-3 = Material Icons:style=Regular:size=15
+
+include-directory = ${env:HOSTCONFDIR:yukari}
+
+include-file = modules-polybar
 
 [settings]
 screenchange-reload = true

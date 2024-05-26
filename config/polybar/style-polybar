@@ -1,0 +1,12 @@
+[colors]
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+primary = ${xrdb:color6}
+secondary = ${xrdb:color3}
+alert = ${xrdb:color1}
+
+[section/fonts]
+font-0 = Hack Nerd Font:size=14
+font-1 = Koruri-Regular:size=13
+font-2 = Weather Icons:size=12
+font-3 = Material Icons:style=Regular:size=15

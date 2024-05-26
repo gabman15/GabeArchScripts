@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+
+# Unfortunately it's not easy to directly use Polybar colour values in this
+# script so I have to redefine some of my colours here. See the link below for
+# more details:
+# https://github.com/polybar/polybar/wiki/Formatting#format-tags-inside-polybar-config
+green=#689D6A
+
+configs_path="/home/lord_gabem/.config/vpn/mullvad"
+connected_interface=$(networkctl 2> /dev/null | grep -P "\d+ .* wireguard" -o | cut -d" " -f2)
+
+connect() {
+    selected_config=$(ls $configs_path/*.conf | xargs basename -a -s .conf | rofi -dmenu)
+    [[ $selected_config ]] && sudo wg-quick up "$configs_path"/"$selected_config".conf
+}
+
+disconnect() {
+    # Normally we should have a single connected interface but technically
+    # there's nothing stopping us from having multiple active intgerfaces so
+    # let's do this in a loop:
+    for connected_config in $(networkctl 2> /dev/null| grep -P "\d+ .* wireguard" -o | cut -d" " -f2)
+    do
+        sudo wg-quick down $configs_path/"$connected_config".conf
+    done
+}
+
+toggle() {
+    if [[ $connected_interface ]]
+    then
+        disconnect
+    else
+        connect
+    fi
+}
+
+print() {
+    if [[ $connected_interface ]]
+    then
+        echo %{u"$green"}%{+u}%{T5}%{F"$green"} %{T-}%{F-} "$connected_interface"
+    else
+        echo %{T5}%{T-} VPN
+    fi
+}
+
+case "$1" in
+    --connect)
+        connect
+        ;;
+    --disconnect)
+        disconnect
+        ;;
+    --toggle)
+        toggle
+        ;;
+    *)
+        print
+        ;;
+esac
