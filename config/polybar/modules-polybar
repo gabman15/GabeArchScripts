@@ -142,9 +142,8 @@ unknown-as-up = true
 
 format-connected = <ramp-signal> <label-connected> 
 format-disconnected = <label-disconnected> %{F#f00} disconnected %{F-}
-
 #label-connected = 󰖩
-label-connected = %{F#d0f} %essid% %{F-} %local_ip%
+label-connected = %{F#B16286} %essid% %{F-} %local_ip%
 label-disconnected = 󰖪
 label-disconnected-foreground = ${color.alert}
 
