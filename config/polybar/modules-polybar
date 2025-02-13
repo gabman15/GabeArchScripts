@@ -110,7 +110,7 @@ click-left = exec rofi run -show drun -font 'Hack Nerd Font 14' -drun-categories
 
 [module/ethernet]
 type = internal/network
-interface = enp3s0
+interface = enp8s0
 
 interval = 1.0
 #accumulate-stats = true
@@ -276,3 +276,10 @@ type = custom/text
 label = background
 label-foreground = ${colors.primary}
 click-left = exec backgrounder
+
+[module/mangaocr]
+type = custom/script
+exec = ~/.config/polybar/scripts/manga-ocr.sh
+click-left = ~/.config/polybar/scripts/manga-ocr.sh --toggle
+tail = false
+interval = 1

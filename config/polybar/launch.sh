@@ -7,8 +7,8 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 HOSTNAME=`hostname`
 export HOSTCONFDIR=$HOSTNAME
 if [ $HOSTNAME = 'gensokyo' ]; then
-    MONITOR="DP-2" polybar --reload bar_top_left &
-    MONITOR="DP-2" polybar --reload bar_bottom_left &
+    MONITOR="DP-0" polybar --reload bar_top_left &
+    MONITOR="DP-0" polybar --reload bar_bottom_left &
     MONITOR="DVI-D-0" polybar --reload bar_top_right &
     MONITOR="DVI-D-0" polybar --reload bar_bottom_right &
 else # 1 screen

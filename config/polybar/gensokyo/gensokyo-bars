@@ -3,7 +3,7 @@ include-file = ~/.config/polybar/style-polybar
 [bar/bar_top_left]
 inherit = section/fonts
 enable-ipc = true
-monitor = DP-2
+monitor = DP-0
 width = 100%
 height = 34
 fixed-center = true
@@ -62,7 +62,7 @@ cursor-scroll = ns-resize
 
 [bar/bar_bottom_left]
 inherit = section/fonts
-monitor = DP-2
+monitor = DP-0
 width = 100%
 height = 30
 fixed-center = true
@@ -86,7 +86,7 @@ module-margin-right = 5
 
 modules-left = ethernet games background
 modules-center = i3
-modules-right = dunst wireguard lain powermenu
+modules-right = mangaocr dunst wireguard lain powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
