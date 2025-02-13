@@ -20,9 +20,8 @@
 (setq-default c-basic-offset 4)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-
-
+;;(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(global-display-line-numbers-mode)
 ;;org mode
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
@@ -50,3 +49,27 @@
 ;;evil mode
 ;;(require 'evil)
 ;;(evil-mode 1)
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+;;
+(add-hook 'tuareg-mode-hook (lambda ()
+                              (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+                              (merlin-mode)))
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+
+(use-package lsp-mode
+  :hook ((ruby-mode) . lsp))
+
+
+  ;; config 
+  ;; (add-to-list 'lsp-language-id-configuration '(ruby-mode . "ruby"))
+
+  ;; (lsp-register-client (make-lsp-client
+  ;;                       :new_connection (lsp-stdio-connection "solargraph stdio")
+  ;;                       :activation-fn (lsp-activate-on "ruby")
+  ;;                       :server-id 'solargraph)))
+
+(use-package exec-path-from-shell
+  :init
+  (exec-path-from-shell-initialize))
+
+

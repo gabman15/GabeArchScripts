@@ -11,7 +11,7 @@
  '(fringe-mode 6 nil (fringe))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(ini-mode which-key ement sml-mode auto-complete-auctex all-the-icons-dired all-the-icons arduino-cli-mode arduino-mode gruvbox-theme markdown-mode rust-mode gnu-elpa-keyring-update ##))
+   '(yaml-mode auctex company lsp-ui exec-path-from-shell lsp-mode tuareg ini-mode which-key ement sml-mode auto-complete-auctex all-the-icons-dired all-the-icons arduino-cli-mode arduino-mode gruvbox-theme markdown-mode rust-mode gnu-elpa-keyring-update ##))
  '(vhdl-basic-offset 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
