@@ -2,13 +2,7 @@
 
 include ~/.config/i3/`hostname`-config
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+exec --no-startup-id picom -b
 
 #Notifications
 exec --no-startup-id /usr/bin/dunst
@@ -80,7 +74,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle ; [floating] resize set 1000 1000 ; move position center
+bindsym $mod+Shift+space floating toggle ; [con_id=__focused__ floating] resize set 1000 1000 ; [con_id=__focused__ floating] move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -156,18 +150,21 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-for_window [class="^.*"] border pixel 2
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #D79921   #8EC07C
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+default_border pixel 2
+default_floating_border pixel 2
+# for_window [class="^.*$"] border pixel 2
 
 hide_edge_borders smart
 
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-exec --no-startup-id feh --bg-scale /home/lord_gabem/Pictures/Wallpapers/yakumo.jpg --bg-scale /home/lord_gabem/Pictures/Wallpapers/yakumo.jpg
-
-exec --no-startup-id fcitx5 -d
-
-exec --no-startup-id transformers_ocr start
 
 bindsym $mod+Shift+e exec emacs
 
@@ -175,10 +172,13 @@ bindsym $mod+Shift+p exec "maim -u -i $(xdotool getactivewindow) | tee ~/Picture
 bindsym $mod+Shift+s exec "maim -s -u | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png"
 
 bindsym $mod+Shift+t exec "transformers_ocr recognize"
+bindsym $mod+Mod1+t exec "~/.config/dunst/translate.sh"
 #bindsym $mod+Shift+t exec "maim -s -u | xclip -selection clipboard -t image/png"
 bindsym $mod+Shift+m exec "mpv $(xclip -o)"
 
 bindsym $mod+p exec "rofi-pass"
+
+bindsym $mod+i exec "feh --scale-down -g 500x500  /tmp/album.png"
 
 for_window [class="^Steam$" title="^Friends$"] floating enable
 for_window [class="^Steam$" title="Steam - News"] floating enable
@@ -194,3 +194,8 @@ for_window [class="^mpv$"] floating enable
 for_window [class="^gifview$"] floating enable
 for_window [class="^Gifview$"] floating enable
 for_window [class="^feh$"] floating enable
+for_window [title="^feh.*/tmp/album.png$"] sticky enable
+for_window [title="^tk$"] floating enable
+for_window [class="^kitty$" title="^flitter-splits.*$"] floating enable ; resize set 850 500 ; border pixel 0
+#for_window [class="^[Kk]unst$"] floating enable
+for_window [class="^[Nn]sxiv$"] floating enable

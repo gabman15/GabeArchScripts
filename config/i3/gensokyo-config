@@ -3,6 +3,12 @@
 #Main font
 font pango:Hack Nerd Font 12
 
-bindsym $mod+Shift+x exec "i3lock -i Pictures/marisalock.jpg -M --ind-pos='1160:1000:2560:1440'"
-
+#bindsym $mod+Shift+x exec "i3lock -i Pictures/marisalock.jpg -M --ind-pos='1160:1000:2560:1440'"
+bindsym $mod+Shift+x exec "i3lock"
 bindsym $mod+Shift+Mod1+p exec "maim -g 2560x1440+0+0 | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png"
+
+exec --no-startup-id feh --bg-scale /home/lord_gabem/Pictures/Wallpapers/yakumo.jpg --bg-scale /home/lord_gabem/Pictures/Wallpapers/yakumo.jpg
+
+exec --no-startup-id fcitx5 -d
+
+exec --no-startup-id albumart
