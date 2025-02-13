@@ -10,6 +10,8 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (if (file-exists-p custom-file) (load custom-file ))
 
+(load-file "~/.emacs.d/theme.el")
+
 ;;font
 (add-to-list 'default-frame-alist '(font . "Hack-12"))
 
