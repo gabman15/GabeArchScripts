@@ -1,11 +1,4 @@
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-;;(package-refresh-contents)
+(load-file "~/.emacs.d/packages.el")
 
 (setq custom-file "~/.emacs.d/custom.el")
 (if (file-exists-p custom-file) (load custom-file ))
@@ -20,10 +13,12 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
+(setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 ;;(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (global-display-line-numbers-mode)
+
 ;;org mode
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
@@ -58,20 +53,14 @@
                               (merlin-mode)))
 ;; ## end of OPAM user-setup addition for emacs / base ## keep this line
 
-(use-package lsp-mode
-  :hook ((ruby-mode) . lsp))
+;;lsp mode
 
+(require 'lsp-mode)
+(add-hook 'json-mode-hook #'lsp)
+(add-hook 'php-mode-hook #'lsp)
+(add-hook 'c-mode-hook #'lsp)
+(add-hook 'ruby-mode-hook #'lsp)
 
-  ;; config 
-  ;; (add-to-list 'lsp-language-id-configuration '(ruby-mode . "ruby"))
-
-  ;; (lsp-register-client (make-lsp-client
-  ;;                       :new_connection (lsp-stdio-connection "solargraph stdio")
-  ;;                       :activation-fn (lsp-activate-on "ruby")
-  ;;                       :server-id 'solargraph)))
-
-(use-package exec-path-from-shell
-  :init
-  (exec-path-from-shell-initialize))
-
-
+(setq lsp-pyright-langserver-command "basedpyright")
+(add-hook 'python-mode-hook (lambda () (require 'lsp-pyright) (lsp)))
+(setq lsp-enable-file-watchers nil)
